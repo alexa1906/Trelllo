@@ -1,0 +1,103 @@
+.participants-container {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.participants-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.participants-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 10px;
+  background-color: grey;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.participant span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.board {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.board .column .card {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  margin-bottom: 8px;
+  padding: 10px;
+}
+
+.board .column .card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.add-column-container,
+.add-card-container {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.add-column-container input {
+  padding: 8px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 14px;
+}
+
+.add-column-container button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-column-container button:hover {
+  background-color: #0056b3;
+}
+
+.add-column-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

@@ -1,8 +1,11 @@
 import { FormEvent, useState } from "react";
+import axios from "../../api/axios";
+// import axios from "axios";
+
 
 interface LoginProps {
   onChangeToSignup: () => void;
-  onLoginSuccess: (email: string) => void; 
+  onLoginSuccess: (email: string) => void;
 }
 
 const Login = ({ onChangeToSignup, onLoginSuccess }: LoginProps) => {
@@ -11,12 +14,21 @@ const Login = ({ onChangeToSignup, onLoginSuccess }: LoginProps) => {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Mock login logic, replace with real authentication logic
-    if (email === "user@example.com" && password === "123") {
-      onLoginSuccess(email); // Pass email to onLoginSuccess
-    } else {
-      console.log("Invalid credentials");
-    }
+
+    axios
+      .post("/auth/login", {
+        email,
+        password,
+      })
+      .then((response) => {
+        const { accessToken, refreshToken } = response.data;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        onLoginSuccess(email);
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
   };
 
   return (

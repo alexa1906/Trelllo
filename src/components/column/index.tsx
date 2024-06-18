@@ -1,5 +1,5 @@
-import React from "react";
-import Card from "./Card";
+import Card from "../card";
+import "./column.css";
 
 interface ColumnType {
   id: string;
@@ -29,7 +29,7 @@ const Column = ({
         <Card key={card.id} card={card} />
       ))}
       {showAddCardForm && (
-        <div className="add-card-form">
+        <div className="add-card-container">
           <input
             type="text"
             placeholder="Add a card"

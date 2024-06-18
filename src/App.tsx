@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,15 +7,15 @@ import {
   BrowserRouter,
   useLocation,
   Navigate,
+  Outlet,
 } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/SignUp";
-import Board from "./components/Board";
+import Login from "./components/login";
+import Signup from "./components/signUp";
+import Board from "./components/board";
 import "./App.css";
-import BoardList from "./components/BoardList";
+import BoardList from "./components/boardList";
 
 const AppRoutes = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
 
@@ -25,39 +25,45 @@ const AppRoutes = () => {
   };
 
   const handleSuccess = (email: string) => {
-    setIsAuthenticated(true);
     const username = email.split("@")[0];
     navigate("/boards", { state: { username } });
   };
 
+  const ProtectedRoute = ({ redirectPath = "/" }) => {
+    if (!localStorage.getItem("accessToken")) {
+      return <Navigate to={redirectPath} replace />;
+    }
+
+    return <Outlet />;
+  };
+
   return (
     <Routes>
-      {/* {isAuthenticated ? ( */}
+      <Route element={<ProtectedRoute />}>
         <>
           <Route path="/boards" element={<BoardList />} />
           <Route path="/board/:boardId" element={<Board />} />
         </>
-      {/* ) : isLogin ? ( */}
-        <Route
-          path="/"
-          element={
-            <Login
-              onChangeToSignup={toggleAuthMode}
-              onLoginSuccess={handleSuccess}
-            />
-          }
-        />
-      {/* ) : ( */}
-        <Route
-          path="/signup"
-          element={
-            <Signup
-              onChangeToLogin={() => setIsLogin(true)}
-              onSignupSuccess={handleSuccess}
-            />
-          }
-        />
-      {/* )} */}
+      </Route>
+      <Route
+        path="/"
+        element={
+          <Login
+            onChangeToSignup={toggleAuthMode}
+            onLoginSuccess={handleSuccess}
+          />
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <Signup
+            onChangeToLogin={() => setIsLogin(true)}
+            onSignupSuccess={handleSuccess}
+          />
+        }
+      />
+
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

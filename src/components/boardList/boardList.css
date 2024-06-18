@@ -1,0 +1,92 @@
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+  
+  .username {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .board-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .board-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .board-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-5px);
+  }
+  
+  .board-name {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .board-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .styled-label {
+    display: block;
+    margin: 10px 0 5px 0;
+    font-weight: bold;
+  }
+  
+  .styled-input {
+    width: 85%;
+  }
+  
+  .styled-select {
+    width: 90%;
+  }
+  
+  .styled-input,
+  .styled-select {
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .styled-input:focus,
+  .styled-select:focus {
+    border-color: #1890ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+  }
+  
